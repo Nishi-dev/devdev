@@ -8,7 +8,8 @@
 
 <body>
     <div id="app">
-        {{price}}円
+        <div v-if="stock==0"> Sold out</div>
+        <div v-else>￥ {{price}}</div>
     </div>
 
     <div id="app-2">
@@ -25,7 +26,7 @@
     <div id="app-4">
         <ol>
             <li v-for="todo in todos">
-                {{ todo.text }}
+                {{ todo.text }}  {{todo.value}} point
             </li>
         </ol>
     </div>
@@ -36,10 +37,12 @@
         var app = new Vue({
             el: '#app',
             data: {
-                price: 0
+                price: 0,
+                stock: 0
             }
         });
         app.price = 1000;
+        app.stock = 5;
 
         var app2 = new Vue({
             el: '#app-2',
@@ -59,9 +62,9 @@
             el: '#app-4',
             data: {
                 todos: [
-                    { text: 'Learn JavaScript' },
-                    { text: 'Learn Vue' },
-                    { text: 'Build something awesome' }
+                    { text: 'Learn JavaScript', value: 100 },
+                    { text: 'Learn Vue', value: 100 },
+                    { text: 'Build something awesome', value: 200 }
                 ]
             }
         })
